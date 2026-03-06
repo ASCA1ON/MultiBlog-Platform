@@ -19,17 +19,15 @@ export default function HomePage() {
         <div className={styles["hero-content"]}>
           <h1 className={styles["hero-title"]}>Discover Stories That Matter</h1>
           <p className={styles["hero-subtitle"]}>
-            Explore our curated collection of blogs spanning technology, travel,
-            and design
+            A state-of-the-art platform for deep dives into technology, travel,
+            and the world of design.
           </p>
         </div>
-
-        <div className={styles["hero-background"]}></div>
       </header>
 
       <main className={styles["main-content"]}>
         <section className={styles["blogs-section"]}>
-          <h2 className={styles["section-title"]}>Our Blogs</h2>
+          <h2 className={styles["section-title"]}>Curated Networks</h2>
 
           <div className={styles["blogs-grid"]}>
             {blogs.map(
@@ -45,6 +43,9 @@ export default function HomePage() {
                     }}
                   >
                     <div className={styles["blog-card-inner"]}>
+                      <span className={styles["post-count"]}>
+                        {blog.posts.length} Curated Articles
+                      </span>
                       <h3 className={styles["blog-name"]}>{blog.name}</h3>
                       <p className={styles["blog-tagline"]}>{blog.tagline}</p>
                       <p className={styles["blog-description"]}>
@@ -52,12 +53,8 @@ export default function HomePage() {
                       </p>
 
                       <div className={styles["blog-meta"]}>
-                        <span className={styles["post-count"]}>
-                          {blog.posts.length} articles
-                        </span>
-
                         <span className={styles["read-more"]}>
-                          Explore <span className={styles.arrow}>→</span>
+                          Explore Collection
                         </span>
                       </div>
                     </div>
@@ -68,38 +65,39 @@ export default function HomePage() {
         </section>
 
         <section className={styles["features-section"]}>
-          <h2 className={styles["section-title"]}>Why Read With Us</h2>
+          <h2 className={styles["section-title"]}>Engineered For Reading</h2>
 
           <div className={styles["features-grid"]}>
             <div className={styles.feature}>
               <div className={styles["feature-icon"]}>⚡</div>
-              <h3>Lightning Fast</h3>
+              <h3>Ultra-Responsive</h3>
               <p>
-                Optimized for performance with server-side rendering and
-                intelligent code splitting
+                Zero-lag interactions powered by Next.js Server Components and intelligent code splitting.
               </p>
             </div>
 
             <div className={styles.feature}>
               <div className={styles["feature-icon"]}>🎯</div>
-              <h3>SEO Optimized</h3>
+              <h3>SEO-First Engine</h3>
               <p>
-                Every page is fully indexed with proper meta tags and semantic
-                HTML
+                Built with deep search engine visibility in mind, from dynamic meta tags to semantic markup.
               </p>
             </div>
 
             <div className={styles.feature}>
-              <div className={styles["feature-icon"]}>📱</div>
-              <h3>Mobile First</h3>
+              <div className={styles["feature-icon"]}>🎨</div>
+              <h3>Editorial Design</h3>
               <p>
-                Beautiful reading experience on any device, from phone to
-                desktop
+                A cinematic reading experience that puts typography and content at the forefront.
               </p>
             </div>
           </div>
         </section>
       </main>
+
+      <footer style={{ textAlign: 'center', padding: '4rem', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem' }}>
+        <p>&copy; 2026 HyperBlog Platform. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

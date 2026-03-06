@@ -46,6 +46,8 @@ A high-performance, SEO-optimized multi-blog platform built with Next.js. This p
 - **Bundle Optimization**: "Heavy" components (like the `CommentSection`) are loaded using `dynamic()` imports to split the bundle and only load interactivity when needed.
 - **Styling**: Converted styled-jsx to **CSS Modules** for components like `BlogHeader` and `PostCard`. This allows them to function as **Server Components**, avoiding the client-side runtime of traditional CSS-in-JS solutions.
 - **Image Optimization**: Ready for `next/image` to handle lazy loading and format conversion.
+> [!NOTE]
+> **Interactive Placeholders**: The `CommentSection` is currently a **UI/UX placeholder** with mock data. It is included primarily to demonstrate **performance awareness** through `dynamic()` imports and to show how "heavy" client-side features are architected in a mostly Server-Component-based application.
 
 ### 4. Middleware Logic
 

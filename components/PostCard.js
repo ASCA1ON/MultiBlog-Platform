@@ -37,7 +37,7 @@ export default function PostCard({ post, blogSlug, blogColor, index }) {
         </div>
 
         <div className={styles.readMore}>
-          Read article <span className={styles.arrow}>→</span>
+          Read article <span className={styles.arrow}></span>
         </div>
       </Link>
     </article>

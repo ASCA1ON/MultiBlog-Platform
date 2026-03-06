@@ -33,23 +33,23 @@ export default function CommentSection() {
   return (
     <section className="comment-section">
       <div className="comment-header">
-        <h2>Comments ({comments.length})</h2>
+        <h2>Reader Discussions</h2>
         <button
           className="add-comment-btn"
           onClick={() => setShowCommentForm(!showCommentForm)}
         >
-          {showCommentForm ? "Cancel" : "Add Comment"}
+          {showCommentForm ? "Dismiss" : "Join the Conversation"}
         </button>
       </div>
 
       {showCommentForm && (
         <div className="comment-form">
           <textarea
-            placeholder="Share your thoughts..."
+            placeholder="What are your thoughts on this?"
             className="comment-input"
             rows={4}
           />
-          <button className="submit-btn">Post Comment</button>
+          <button className="submit-btn">Post Discussion</button>
         </div>
       )}
 
@@ -85,106 +85,119 @@ export default function CommentSection() {
 
       <style jsx>{`
         .comment-section {
-          margin-top: 4rem;
-          padding-top: 3rem;
-          border-top: 2px solid #e5e7eb;
-          animation: fadeIn 0.5s ease-out;
+          margin-top: 6rem;
+          padding: 4rem;
+          background: #f8fafc;
+          border-radius: 3rem;
+          border: 1px solid #f1f5f9;
         }
 
         .comment-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 2rem;
+          margin-bottom: 3rem;
         }
 
         .comment-header h2 {
           font-family: "Space Grotesk", sans-serif;
-          font-size: 1.875rem;
-          font-weight: 700;
-          color: #111;
+          font-size: 2.25rem;
+          font-weight: 800;
+          color: #0f172a;
           margin: 0;
+          letter-spacing: -0.02em;
         }
 
         .add-comment-btn {
-          padding: 0.625rem 1.5rem;
-          background: #2563eb;
+          padding: 1rem 2rem;
+          background: #0f172a;
           color: white;
           border: none;
-          border-radius: 8px;
-          font-weight: 600;
+          border-radius: 1rem;
+          font-weight: 700;
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .add-comment-btn:hover {
-          background: #1d4ed8;
-          transform: translateY(-1px);
+          background: #334155;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .comment-form {
-          background: #f9fafb;
-          padding: 1.5rem;
-          border-radius: 12px;
-          margin-bottom: 2rem;
-          animation: slideDown 0.3s ease-out;
+          background: white;
+          padding: 2.5rem;
+          border-radius: 2rem;
+          margin-bottom: 3rem;
+          border: 1px solid #e2e8f0;
+          box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+          animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .comment-input {
           width: 100%;
-          padding: 1rem;
-          border: 2px solid #e5e7eb;
-          border-radius: 8px;
-          font-family: inherit;
-          font-size: 1rem;
+          padding: 1.5rem;
+          border: 1px solid #e2e8f0;
+          border-radius: 1rem;
+          font-family: 'Inter', sans-serif;
+          font-size: 1.1rem;
           resize: vertical;
-          margin-bottom: 1rem;
-          transition: border-color 0.2s;
+          margin-bottom: 1.5rem;
+          transition: all 0.2s;
+          background: #f8fafc;
         }
 
         .comment-input:focus {
           outline: none;
-          border-color: #2563eb;
+          border-color: #0f172a;
+          background: white;
+          box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.05);
         }
 
         .submit-btn {
-          padding: 0.75rem 2rem;
-          background: #10b981;
+          padding: 1rem 2.5rem;
+          background: #2563eb;
           color: white;
           border: none;
-          border-radius: 8px;
-          font-weight: 600;
+          border-radius: 1rem;
+          font-weight: 700;
           cursor: pointer;
           transition: all 0.2s;
         }
 
         .submit-btn:hover {
-          background: #059669;
+          background: #1d4ed8;
+          transform: translateY(-1px);
         }
 
         .comments-list {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 2rem;
         }
 
         .comment {
           display: flex;
-          gap: 1rem;
-          animation: fadeInUp 0.5s ease-out var(--animation-delay) backwards;
+          gap: 1.5rem;
+          padding: 2rem;
+          background: white;
+          border-radius: 2rem;
+          border: 1px solid #f1f5f9;
+          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) var(--animation-delay) backwards;
         }
 
         .comment-avatar {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          width: 56px;
+          height: 56px;
+          border-radius: 1.25rem;
+          background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
           color: white;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: 700;
-          font-size: 0.875rem;
+          font-weight: 800;
+          font-size: 1.1rem;
           flex-shrink: 0;
         }
 
@@ -195,58 +208,56 @@ export default function CommentSection() {
         .comment-meta {
           display: flex;
           align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 0.5rem;
+          gap: 1rem;
+          margin-bottom: 0.75rem;
         }
 
         .comment-author {
-          font-weight: 600;
-          color: #111;
+          font-weight: 800;
+          color: #0f172a;
+          font-size: 1.1rem;
         }
 
         .comment-timestamp {
-          font-size: 0.875rem;
-          color: #6b7280;
+          font-size: 0.9rem;
+          color: #94a3b8;
+          font-weight: 500;
         }
 
         .comment-text {
-          color: #374151;
-          line-height: 1.6;
-          margin: 0 0 0.75rem;
+          color: #475569;
+          line-height: 1.7;
+          font-size: 1.1rem;
+          margin: 0 0 1.25rem;
         }
 
         .comment-actions {
           display: flex;
-          gap: 1rem;
+          gap: 1.5rem;
         }
 
         .like-btn,
         .reply-btn {
-          padding: 0.375rem 0.75rem;
-          background: transparent;
-          border: none;
-          color: #6b7280;
-          font-weight: 500;
-          font-size: 0.875rem;
-          cursor: pointer;
-          transition: color 0.2s;
+          padding: 0.5rem 1rem;
+          background: #f8fafc;
+          border-radius: 0.75rem;
+          border: 1px solid #f1f5f9;
+          color: #64748b;
+          font-weight: 600;
+          font-size: 0.9rem;
+          transition: all 0.2s;
         }
 
         .like-btn:hover {
           color: #ef4444;
+          background: #fff5f5;
+          border-color: #fee2e2;
         }
 
         .reply-btn:hover {
           color: #2563eb;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          background: #eff6ff;
+          border-color: #dbeafe;
         }
 
         @keyframes slideDown {
@@ -272,20 +283,26 @@ export default function CommentSection() {
         }
 
         @media (max-width: 768px) {
+          .comment-section {
+             padding: 2rem 1.5rem;
+             margin-top: 4rem;
+          }
+          
           .comment-header {
             flex-direction: column;
             align-items: flex-start;
-            gap: 1rem;
+            gap: 1.5rem;
           }
 
           .comment {
-            gap: 0.75rem;
+            padding: 1.5rem;
+            gap: 1rem;
           }
 
           .comment-avatar {
-            width: 40px;
-            height: 40px;
-            font-size: 0.75rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 1rem;
           }
         }
       `}</style>
