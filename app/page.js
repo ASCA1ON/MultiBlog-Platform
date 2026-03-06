@@ -1,64 +1,104 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getAllBlogSlugs, getBlogBySlug } from "@/lib/blogData";
+import styles from "./page.module.css";
 
-export default function Home() {
+export const metadata = {
+  title: "Multi-Blog Platform - Discover Stories Across Topics",
+  description:
+    "Explore our collection of blogs covering technology, travel, and design. High-quality content from expert writers.",
+  keywords: "blog, technology, travel, design, articles, stories",
+};
+
+export default function HomePage() {
+  const blogSlugs = getAllBlogSlugs();
+  const blogs = blogSlugs.map((slug) => getBlogBySlug(slug)).filter(Boolean);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className={styles["home-page"]}>
+      <header className={styles.hero}>
+        <div className={styles["hero-content"]}>
+          <h1 className={styles["hero-title"]}>Discover Stories That Matter</h1>
+          <p className={styles["hero-subtitle"]}>
+            Explore our curated collection of blogs spanning technology, travel,
+            and design
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <div className={styles["hero-background"]}></div>
+      </header>
+
+      <main className={styles["main-content"]}>
+        <section className={styles["blogs-section"]}>
+          <h2 className={styles["section-title"]}>Our Blogs</h2>
+
+          <div className={styles["blogs-grid"]}>
+            {blogs.map(
+              (blog, index) =>
+                blog && (
+                  <Link
+                    key={blog.slug}
+                    href={`/${blog.slug}`}
+                    className={styles["blog-card"]}
+                    style={{
+                      "--blog-color": blog.color,
+                      "--animation-delay": `${index * 0.15}s`,
+                    }}
+                  >
+                    <div className={styles["blog-card-inner"]}>
+                      <h3 className={styles["blog-name"]}>{blog.name}</h3>
+                      <p className={styles["blog-tagline"]}>{blog.tagline}</p>
+                      <p className={styles["blog-description"]}>
+                        {blog.description}
+                      </p>
+
+                      <div className={styles["blog-meta"]}>
+                        <span className={styles["post-count"]}>
+                          {blog.posts.length} articles
+                        </span>
+
+                        <span className={styles["read-more"]}>
+                          Explore <span className={styles.arrow}>→</span>
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ),
+            )}
+          </div>
+        </section>
+
+        <section className={styles["features-section"]}>
+          <h2 className={styles["section-title"]}>Why Read With Us</h2>
+
+          <div className={styles["features-grid"]}>
+            <div className={styles.feature}>
+              <div className={styles["feature-icon"]}>⚡</div>
+              <h3>Lightning Fast</h3>
+              <p>
+                Optimized for performance with server-side rendering and
+                intelligent code splitting
+              </p>
+            </div>
+
+            <div className={styles.feature}>
+              <div className={styles["feature-icon"]}>🎯</div>
+              <h3>SEO Optimized</h3>
+              <p>
+                Every page is fully indexed with proper meta tags and semantic
+                HTML
+              </p>
+            </div>
+
+            <div className={styles.feature}>
+              <div className={styles["feature-icon"]}>📱</div>
+              <h3>Mobile First</h3>
+              <p>
+                Beautiful reading experience on any device, from phone to
+                desktop
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );

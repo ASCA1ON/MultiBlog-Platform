@@ -1,0 +1,237 @@
+.home-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+}
+
+.hero {
+  position: relative;
+  padding: 8rem 2rem 6rem;
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, #2563eb 0%, #7c3aed 100%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 800;
+  color: white;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-subtitle {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.section-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0 0 3rem;
+}
+
+.blogs-section {
+  margin-bottom: 6rem;
+}
+
+.blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.blog-card {
+  display: block;
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out var(--animation-delay) backwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--blog-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.blog-card:hover::before {
+  transform: scaleX(1);
+}
+
+.blog-card:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+}
+
+.blog-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--blog-color);
+  margin: 0 0 0.5rem;
+}
+
+.blog-tagline {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.125rem;
+  font-style: italic;
+  color: #666;
+  margin: 0 0 1rem;
+}
+
+.blog-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 0 0 1.5rem;
+  flex: 1;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.post-count {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.read-more {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--blog-color);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.blog-card:hover .arrow {
+  transform: translateX(4px);
+}
+
+.features-section {
+  margin-top: 6rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.feature {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 0.75rem;
+}
+
+.feature p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 5rem 1.5rem 4rem;
+  }
+
+  .main-content {
+    padding: 0 1.5rem 3rem;
+  }
+
+  .blogs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}

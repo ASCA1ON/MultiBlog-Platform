@@ -1,0 +1,102 @@
+.blogPage {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.postsSection {
+  margin-bottom: 4rem;
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.aboutSection {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 3rem;
+}
+
+.aboutSection h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 1rem;
+}
+
+.aboutSection p {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #444;
+  margin: 0;
+}
+
+.recentActivity {
+  margin-top: 4rem;
+}
+
+.backButtonContainer {
+  padding: 2rem 0;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4b5563;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.backButton:hover {
+  color: #111;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-color: #d1d5db;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem 3rem;
+  }
+
+  .postsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .aboutSection {
+    padding: 2rem;
+  }
+}

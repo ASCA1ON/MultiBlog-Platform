@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HyperBlog Platform
 
-## Getting Started
+A high-performance, SEO-optimized multi-blog platform built with Next.js. This platform uses a subfolder-based routing architecture and demonstrates modern web development best practices.
 
-First, run the development server:
+## 🚀 Getting Started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js (v18 or later)
+- npm or yarn
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Install dependencies:
 
-## Learn More
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Run the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠 Architectural Decisions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. Rendering Strategy (SSR / Server Components)
+
+- **Primary Choice**: Server Components (Next.js App Router) by default.
+- **Why**: This ensures that content is server-rendered for maximum SEO benefit and minimizes the amount of JavaScript sent to the client. By keeping logic on the server, we improve Core Web Vitals (especially First Contentful Paint).
+- **Client Components**: Used sparingly for interactive elements like the `CommentSection` while keeping the main content (headers, text) as server components.
+
+### 2. SEO Approach
+
+- **Dynamic Metadata**: Every blog and post page uses `generateMetadata` to populate page titles, meta descriptions, OpenGraph tags, and keywords dynamically from a data source.
+- **Semantic HTML**: Proper heading hierarchy (e.g., a single `<h1>` per page) is enforced.
+- **Indexability**: Server-rendered content ensures that search engine crawlers can see the full content of the blogs without executing JavaScript.
+
+### 3. Performance Decisions
+
+- **Bundle Optimization**: "Heavy" components (like the `CommentSection`) are loaded using `dynamic()` imports to split the bundle and only load interactivity when needed.
+- **Styling**: Converted styled-jsx to **CSS Modules** for components like `BlogHeader` and `PostCard`. This allows them to function as **Server Components**, avoiding the client-side runtime of traditional CSS-in-JS solutions.
+- **Image Optimization**: Ready for `next/image` to handle lazy loading and format conversion.
+
+### 4. Middleware Logic
+
+- **Internal Rewriting**: The application uses a middleware implementation (currently in `proxy.js`) that reads a custom header (`x-blog-domain`).
+- **Dynamic Routing**: Depending on the header value, the request is internally rewritten to a specific subfolder blog (e.g., `/tech`, `/travel`). This allows the platform to appear as different blogs while sharing the same underlying routing logic.
+
+---
+
+## 📈 Scaling for the Future
+
+### How to scale to Main Domain + Subdomain + Subfolder?
+
+To support a complex structure like `blog.maindomain.com/subfolder` or `customdomain.com`, the following architecture is recommended:
+
+1. **Hostname-based Middleware**: Update the middleware to check `request.headers.get('host')` in addition to custom headers.
+2. **Database-backed Tenants**: Instead of a static map, fetch domain/slug relationships from a database (with caching at the edge).
+3. **Internal Rewrites**:
+   - `custom.com` → Rewrite to `/[tenantSlug]/...` internally.
+   - `subdomain.maindomain.com` → Rewrite to `/[tenantSlug]/...`.
+   - `maindomain.com/tech-blog` → Already handled by the Current subfolder routing.
+4. **Vercel Platforms Approach**: Leverage wildcard domains and internal rewrites to serve thousands of dynamic blogs from a single Next.js deployment.
